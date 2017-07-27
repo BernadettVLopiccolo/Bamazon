@@ -12,7 +12,6 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    console.log("connected");
     startBuying();
 });
 
@@ -44,9 +43,10 @@ function startBuying() {
                 }
             }
 
-            if (chosenId.stock_quantity > answer.quantity) {
+            if (chosenId.stock_quantity >= answer.quantity) {
                 var newQuantity = chosenId.stock_quantity - answer.quantity;
                 console.log("newQuantity", newQuantity);
+
                 connection.query(
                     "UPDATE products SET ? WHERE ?", [{
                             stock_quantity: newQuantity
