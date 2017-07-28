@@ -47,6 +47,7 @@ function viewProduct() {
         if (err) throw err;
         console.log(results);
 
+
     });
 
 }
@@ -97,14 +98,14 @@ function addInventory() {
                         function(err) {
                             if (err) throw err;
                             console.log("You have successfully updated the chosen Product!");
-
+                            connection.end();
                         }
                     );
                 }
 
             }
 
-        })
+        });
 
     });
 
